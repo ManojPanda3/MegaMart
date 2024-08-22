@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# CSRF_TRUSTED_ORIGIN = [ 'https://*.shouko.shop']
+# env('RENDER_EXTERNAL_HOSTNAME')
 
 # Application definition
 
@@ -39,6 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = "register"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

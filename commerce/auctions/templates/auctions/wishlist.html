@@ -18,17 +18,23 @@
 {% for listing in listings %}
     <a href="{% url 'listing' listing.id %}">
         <div class="listing">
-            <h6>{{ listing.category.categoryName }}</h6>
             <img src="{{ listing.imageUrl }}" alt="image">
             <div class="detail">
                 <h6>{{ listing.title }}</h6>
                 <p>{{ listing.description }}</p>
                 <div>{{ listing.price }}</div>
             </div>
+            </a>
             <div class="time">
                 {{ listing.created_at }}
             </div>
-        </div>
-    </a>
+
+			    <form action="{% url 'wishlist' %}" method="POST">
+			        {% csrf_token %}
+			        <button name="listing_id" value="{{listing.id}}" class="btn btn-danger" type="submit">Remove From WatchList</button>
+			    </form>
+	
+	       </div>
+    
 {% endfor %}
 {% endblock %}

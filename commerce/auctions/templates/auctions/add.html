@@ -1,0 +1,36 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+	<div>
+    	<h1>Add Your Bid</h1>
+	</div>
+	<hr>
+	<form action="{% url 'add' %}" method="POST">
+		{% csrf_token %}
+
+		<label for="title">Title</label>
+		<input type="text" name="title" placeholder="product name" id="title"> <br>
+
+		<label for="description">Description</label>
+		<input type="textbox" name="description" placeholder="write something about Listing..." id="description"> <br>
+
+		<label for="imageUrl">Image-Url</label>
+		<input type="text" name="imageUrl" id="imageUrl" placeholder="" > <br>
+
+		<label for="price">Price</label>
+		<input type="text" name="price" placeholder="$" id="price"> <br>
+
+		<label for="category">category</label>
+		<select class="form-select" aria-label="Default select example" name="category">
+			{% for category in categories %}
+			<option value="{{ category.categoryName }}">{{ category.categoryName }}</option>
+			{% endfor %}
+		</select> <br>	
+		<button>Add</button>
+	</form>
+	
+
+{% endblock %}
+
+
+

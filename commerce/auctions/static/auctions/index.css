@@ -1,0 +1,13 @@
+.listing {
+	width: 100vw;
+	height: 400px;
+	display: flex;
+	align-content: center;
+	justify-content: space-between;
+}
+
+img {
+	height: 200px;
+	width: 300px;
+}
+

@@ -1,0 +1,52 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+
+
+    {% if isListingInWatchList %}
+    <form action="{% url 'listing' listing.id %}" method="POST">
+        {% csrf_token %}
+        <button name="remove" class="btn btn-danger" type="submit">Remove From WatchList</button>
+    </form>
+{% else %}
+    <form action="{% url 'listing' listing.id %}" method="POST">
+        {% csrf_token %}
+        <button name="add" class="btn btn-secondary" type="submit">Add In WatchList</button>
+    </form>
+{% endif %}
+
+    <h2>{{listing.title}}</h2>
+
+    
+    <div class="listing" >
+        <img src="{{listing.imageUrl}}" alt="image">
+        <div class="detail">
+            <h6>{{listing.title}}</h6>
+            <p>{{listing.description}}</p>
+            <div>{{listing.price}}</div>
+                    </div>
+            <div class="time">
+                {{listing.created_at}}
+            </div>
+            <div>
+            	{{listing.owner}}
+            </div>
+    	</div>
+    	
+
+        <form action="{% url 'listing' listing.id%}" method="POST">
+            {% csrf_token %}
+            <input type="textarea" placeholder="comment" name="comment"> 
+            <input type="submit">   
+        </form>
+        
+        {% for comment in comments %}
+        <div class="message"><h6>{{comment.author}}</h6>
+            {{comment.message}}
+        </div>
+        <hr>                                                                                                                                     
+        {% endfor %}
+    
+{% endblock %}
